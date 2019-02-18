@@ -7,6 +7,4 @@ from django.urls import reverse
 from .models import Restaurant, Reviews
 
 def home(request):
-    return HttpResponse('admin')
-
-# Create your views here.
+    return render(request,'home.html')
