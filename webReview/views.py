@@ -4,7 +4,8 @@ from django.template import loader
 from django.urls import reverse
 
 
-# from .models import
+from .models import Restaurant, Reviews
+
 def home(request):
     return HttpResponse('admin')
 
