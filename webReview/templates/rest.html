@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {margin:0;}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black	;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.rightmenu {
+  background-color: green;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="#news">Dinner@KmutNB</a></li>
+  <li style="float:right"><a class="rightmenu" href="{% url 'review:home' %}">Home</a></li>
+
+</ul>
+
+<div style="padding:20px;margin-top:30px;background-color:#48D1CC	;height:1500px;">
+  <h1>{{rest_descrip.name}}</h1>
+  <h3>Description : {{rest_descrip.description}}</h3>
+  <h3>Address : {{rest_descrip.address}}</h3>
+  <h3>Phone Number : {{rest_descrip.phone_num}}</h3>
+  <h3>Rating : {{rest_descrip.rating}}
+  <h1></h1>
+  <h1>Reviews</h1>
+   {% for index in rev %}
+     <h3>comment : {{ forloop.counter }} </h3>
+     <h4>{{index.name}}</h4>
+     <h4>{{index.comment}}</h4>
+     <h4>{{index.rating}}</h4>
+   {% endfor %}
+
+  <h1></h1>
+  <h1></h1>
+  <h1>Add Reviews Here</h1>
+  <form action="{% url 'review:add_review' rest_descrip.id %}" method="post">
+    {% csrf_token %}
+    Name : <input type="TextInput" name="Rname" value=""></br>
+    Comment : <input type="TextInput" name="Rcomm" value=""></br>
+    Rating : <input type="TextInput" name="Rating" value=""></br>
+    <input type="submit" value="Submit">
+  </form>
+
+
+
+</div>
+
+</body>
+</html>

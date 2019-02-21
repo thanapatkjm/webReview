@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {margin:0;}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black	;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.rightmenu {
+  background-color: green;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="#news">Dinner@KmutNB</a></li>
+  <li style="float:right"><a class="rightmenu" href="{% url 'review:home' %}">Home</a></li>
+
+</ul>
+
+<div style="padding:20px;margin-top:30px;background-color:#48D1CC	;height:1500px;">
+  <h1>Fill Boxes Below</h1>
+  <form action="{% url 'review:creating' %}" method="post">
+    {% csrf_token %}
+    Name : <input type="TextInput" name="Rname" value=""></br>
+    Description : <input type="TextInput" name="Rdes" value=""></br>
+    Address : <input type="TextInput" name="Radd" value=""></br>
+    Phone Number : <input type="TextInput" name="Rphone" value=""></br>
+    Category : <input type="TextInput" name="Rcate" value=""></br>
+
+    <input type="submit" value="Submit">
+  </form>
+
+
+
+</div>
+
+</body>
+</html>

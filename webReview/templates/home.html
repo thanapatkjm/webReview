@@ -9,7 +9,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #191970	;
+  background-color: black	;
   position: fixed;
   top: 0;
   width: 100%;
@@ -36,10 +36,16 @@ li a {
 
 <ul>
   <li><a href="#news">Dinner@KmutNB</a></li>
-  <li style="float:right"><a class="rightmenu" href="#about">About</a></li>
+  <li style="float:right"><a class="rightmenu" href="{% url 'review:add_rest' %}">+เพิ่มร้าน</a></li>
 </ul>
 
 <div style="padding:20px;margin-top:30px;background-color:#48D1CC	;height:1500px;">
+  <h1>Choose Restaurant</h1>
+  {% for restau in list_rest %}
+      <h4><a href="{% url 'review:res' restau.id %}">{{ restau.name }}</a></h4>
+  {% endfor %}
+
+
 
 </div>
 
