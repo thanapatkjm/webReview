@@ -42,27 +42,36 @@ li a {
 
 <div style="padding:20px;margin-top:30px;background-color:#48D1CC	;height:1500px;">
   <h1>{{rest_descrip.name}}</h1>
+  <h3>Category : {{rest_descrip.Category}}</h3>
   <h3>Description : {{rest_descrip.description}}</h3>
   <h3>Address : {{rest_descrip.address}}</h3>
   <h3>Phone Number : {{rest_descrip.phone_num}}</h3>
   <h3>Rating : {{rest_descrip.rating}}
   <h1></h1>
   <h1>Reviews</h1>
-   {% for index in rev %}
-     <h3>comment : {{ forloop.counter }} </h3>
-     <h4>{{index.name}}</h4>
-     <h4>{{index.comment}}</h4>
-     <h4>{{index.rating}}</h4>
-   {% endfor %}
-
+  {% if rev %}
+     {% for index in rev %}
+       <h3>comment : {{ forloop.counter }} </h3>
+       <h4>{{index.name}}</h4>
+       <h4>{{index.comment}}</h4>
+       <h4>{{index.rating}}</h4>
+     {% endfor %}
+  {% else %}
+    <h3>No Review yet </h3>
+  {% endif %}
   <h1></h1>
   <h1></h1>
   <h1>Add Reviews Here</h1>
+  {% if error %}
+    </br>
+    <p>{{error}}</p>
+    </br>
+  {% endif %}
   <form action="{% url 'review:add_review' rest_descrip.id %}" method="post">
     {% csrf_token %}
     Name : <input type="TextInput" name="Rname" value=""></br>
-    Comment : <input type="TextInput" name="Rcomm" value=""></br>
-    Rating : <input type="TextInput" name="Rating" value=""></br>
+    Comment : </br><textarea name="Rcomm" rows="3" cols="30"></textarea></br>
+    Rating : 1<input type="radio" name="Rating" value=1> 2<input type="radio" name="Rating" value=2> 3<input type="radio" name="Rating" value=3> 4<input type="radio" name="Rating" value=4> 5<input type="radio" name="Rating" value=5></br>
     <input type="submit" value="Submit">
   </form>
 

@@ -41,14 +41,24 @@ li a {
 </ul>
 
 <div style="padding:20px;margin-top:30px;background-color:#48D1CC	;height:1500px;">
-  <h1>Fill Boxes Below</h1>
+  {% if error %}
+    <h1>{{error}}</h1>
+  {% else %}
+    <h1>Fill Boxes Below</h1>
+  {% endif %}
   <form action="{% url 'review:creating' %}" method="post">
     {% csrf_token %}
     Name : <input type="TextInput" name="Rname" value=""></br>
-    Description : <input type="TextInput" name="Rdes" value=""></br>
-    Address : <input type="TextInput" name="Radd" value=""></br>
+    Description : </br><textarea name="Rdes" rows="5" cols="30"></textarea></br>
+    Address : </br><textarea name="Radd" rows="3" cols="30"></textarea></br>
     Phone Number : <input type="TextInput" name="Rphone" value=""></br>
-    Category : <input type="TextInput" name="Rcate" value=""></br>
+    Category :   <select name="Rcate">
+                  <option value="ร้านอาหารตามสั่ง">ร้านอาหารตามสั่ง</option>
+                  <option value="ร้านขนมหวาน">ร้านขนมหวาน</option>
+                  <option value="ร้านก๋วยเตี๋ยว">ร้านก๋วยเตี๋ยว</option>
+                  <option value="ร้านบุฟเฟ่/หมูกระทะ">ร้านบุฟเฟ่/หมูกระทะ</option>
+                  <option value="ร้านบุฟเฟ่/หมูกระทะ">ร้านข้าวมันไก่</option>
+                </select></br></br>
 
     <input type="submit" value="Submit">
   </form>
